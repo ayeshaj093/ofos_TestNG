@@ -115,7 +115,7 @@ public void Login() {
   
 @Test(priority=2)
 public void edit_restaurant() {
-	driver.findElement(By.xpath("//a[@id='jqEditRecord_226']//img[contains(@class,'table_iconset li_iconset')]")).click();
+	driver.findElement(By.xpath("//a[@id='jqEditRecord_232']//img[@class='table_iconset li_iconset']")).click();
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	
 	driver.findElement(By.xpath("//input[@id='venue_name']")).clear();
