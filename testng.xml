@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      
+      <class name="Users_Admin"/>
+      <class name="Cuisines_Admin"/>
+      <class name="Coupon_Code_Admin"/>
+      <class name="Restaurant_Admin"/>
+      <class name="Food_Items_Admin"/>
+      <class name="Menu_RM"/>
+      <class name="Food_Item_RM"/>
+      <class name="Restaurant_RM"/>
+      <class name="Coupon_Code_RM"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

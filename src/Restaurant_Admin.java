@@ -10,14 +10,12 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ADMIN {
-WebDriver driver;
-
-@BeforeTest
+public class Restaurant_Admin {
+	WebDriver driver;
+	@BeforeTest
 	public void startbrowser() throws InterruptedException, IOException {
 	System.setProperty("webdriver.chrome.driver", "C:\\ChromeDriver.exe");
 	driver= new ChromeDriver();
@@ -115,7 +113,7 @@ public void Login() {
   
 @Test(priority=2)
 public void edit_restaurant() {
-	driver.findElement(By.xpath("//a[@id='jqEditRecord_232']//img[@class='table_iconset li_iconset']")).click();
+	driver.findElement(By.xpath("//a[@id='jqEditRecord_237']//img[contains(@class,'table_iconset li_iconset')]")).click();
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	
 	driver.findElement(By.xpath("//input[@id='venue_name']")).clear();
@@ -151,90 +149,18 @@ public void edit_restaurant() {
 	driver.findElement(By.xpath("//input[@id='jqSubmitForm']")).click();
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 }
-  
-  @Test(priority=3)
+@Test(priority=3)
+ public void Search_Restaurant() throws InterruptedException  {
+	driver.findElement(By.id("searchText")).sendKeys("Brew Point");
+	Thread.sleep(1000);
+	driver.findElement(By.id("section_search_button")).click();
+}
+  @Test(priority=4)
   public void delete_restaurant() {
-	  driver.findElement(By.xpath("//tr[@id='jqRecord_115']//a[contains(@class,'cms_list_operation action_delete')]//img[contains(@class,'li_iconset')]")).click();
+	  
+	  driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[3]/td[9]/a[3]/img[1]")).click();
       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  driver.switchTo().alert().accept();
 	  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
-@Test(priority=4)
-public void Add_Coupon_Code() {
-	driver.findElement(By.xpath("//a[contains(text(),'Coupon Codes')]")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	//scrolldown
-	JavascriptExecutor js=(JavascriptExecutor)driver;
-	js.executeScript("window.scrollBy(0,1500)");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	
-	driver.findElement(By.xpath("//a[@class='addrecord btn btn-info']")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccCode']")).sendKeys("BB10");
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//textarea[@id='ccDescription']")).sendKeys("10%off on min.order of 100");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccDiscount']")).sendKeys("10");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccNumberOfImpression']")).sendKeys("12");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='jqSubmitForm']")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//tr[@id='jqRecord_25']//button[@class='btn btn-mini btn-danger'][contains(text(),'Publish')]")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	
-}
-@Test(priority=5)
-public void Edit_Coupon_Code() {
-	driver.findElement(By.xpath("//a[@id='jqEditRecord_25']//img[@class='table_iconset li_iconset']")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccStartDate']")).sendKeys("09/03/2019");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccEndDate']")).sendKeys("10/31/2019");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccThreshouldAmount']")).clear();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='ccThreshouldAmount']")).sendKeys("100");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='jqSubmitForm']")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-}
-
-@Test(priority=6)
-public void Delete_Coupon_Code() {
-	driver.findElement(By.xpath("//tr[@id='jqRecord_12']//a[contains(@class,'cms_list_operation action_delete')]//img[contains(@class,'li_iconset')]")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    driver.switchTo().alert().accept();
-	}
-@Test(priority=7)
-public void Add_users() {
-	driver.findElement(By.xpath("//li[9]//a[1]")).click();
-	//add
-	driver.findElement(By.xpath("//a[@class='addrecord btn btn-info']")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='first_name']")).sendKeys("Ayesha");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='last_name']")).sendKeys("Jabeen");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='email']")).sendKeys("er.ayeshaz93@gmail.com");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Minds123");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//select[@id='status']/option[1]")).click();
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='jqSubmitForm']")).click();
-}
-@Test(priority=8)
-public void Edit_User() {
-	driver.findElement(By.xpath("//a[@id='jqEditRecord_228']//img[@class='table_iconset li_iconset']")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//select[@id='gender']/option[3]")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='dob']")).sendKeys("09/26/1993");
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//select[@id='status']/option[02]")).click();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.findElement(By.xpath("//input[@id='jqSubmitForm']")).click();
-}
-
 }
